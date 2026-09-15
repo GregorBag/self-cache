@@ -10,17 +10,16 @@ template <typename T, typename KeyT = int> struct cache_t {
   std::size_t capacity_;
   std::size_t min_freq_ = 0;
 
-  using KeyList = std::list<KeyT>;
-  using KeyIt = typename KeyList::iterator;
+  using ListIt = typename std::list<KeyT>::iterator;
 
   struct Entry {
     T value;
     std::size_t freq;
-    KeyIt position;
+    ListIt position;
   };
 
   std::unordered_map<KeyT, Entry> entries_;
-  std::unordered_map<std::size_t, KeyList> groups_;
+  std::unordered_map<std::size_t, std::list<KeyT>> groups_;
 
   explicit cache_t(std::size_t capacity): capacity_(capacity) {}
 
